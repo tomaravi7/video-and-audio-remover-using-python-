@@ -11,10 +11,10 @@ def file_path():
         #Fetch the file path of the hex file browsed.
         if(filepath == ""):
             filepath = filedialog.askopenfilename( initialdir = os.getcwd() ,
-                 title = "select a file", filetypes = [("hex files", "*.mp4")])
+                 title = "select a file", filetypes = [("vid files", "*.mp4")])
         else:
             filepath = filedialog.askopenfilename( initialdir=filepath,
-                 title = "select a file", filetypes = [("hex files", "*.mp4")])
+                 title = "select a file", filetypes = [("vid files", "*.mp4")])
 
 
 def generate():
