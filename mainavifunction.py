@@ -8,14 +8,12 @@ from pyparsing import col;
 def removeaudio():
     filenew=filenewdes.get()
     file=filedes.get()
+    media = VideoFileClip(file)
+    new_clip = media.without_audio()
     if(not filenew):
-        media = VideoFileClip(file)
-        new_clip = media.without_audio()
         new_clip.write_videofile(file)
         new_clip.close()
     else:
-        media = VideoFileClip(file)
-        new_clip = media.without_audio()
         new_clip.write_videofile(filenew+".mp4")
         new_clip.close()
 
@@ -26,6 +24,15 @@ def getaudio():
     videoclip = VideoFileClip(audfile)
     audioclip = videoclip.audio
     audioclip.write_audiofile(filenew+".mp3")
+
+def changeangle():
+    filenew=filenewdes.get()
+    file=filedes.get()
+    deg=int(angle.get())
+    new_clip=VideoFileClip(file).rotate(deg)
+    new_clip.write_videofile(filenew+".mp4")
+    new_clip.close()
+    
 
 
 win=tkinter.Tk(screenName='AV operations')
