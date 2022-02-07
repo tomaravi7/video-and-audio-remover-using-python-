@@ -1,5 +1,5 @@
 from tkinter import StringVar, font
-from matplotlib.pyplot import close, title
+from matplotlib.pyplot import close
 from moviepy.editor import *
 from moviepy.editor import VideoFileClip
 import tkinter
@@ -11,11 +11,10 @@ def getpath():
     selfile = StringVar()
     selfile = filedialog.askopenfilename( initialdir=selfile,
     title = "Select a file", filetypes = [(".mp4", "*.mp4")])
-    selfile=title.get()
     tkinter.Label(win,text=selfile,padx=10).grid(row=0,column=4)
 def removeaudio():
     filenew=filenewdes.get()
-    file=selfile
+    file=filedes.get()
     media = VideoFileClip(file)
     new_clip = media.without_audio()
     if(not filenew):
@@ -26,7 +25,7 @@ def removeaudio():
         new_clip.close()
 
 def getaudio():
-    audfile=selfile
+    audfile=filedes.get()
     filenew=filenewdes.get()
     videoclip = VideoFileClip(audfile)
     audioclip = videoclip.audio
@@ -40,7 +39,7 @@ def getaudio():
 
 def changeangle():
     filenew=filenewdes.get()
-    file=selfile
+    file=filedes.get()
     deg=int(angle.get())
     new_clip=VideoFileClip(file).rotate(deg)
     if(not filenew):
@@ -49,7 +48,8 @@ def changeangle():
     else:
         new_clip.write_videofile(filenew+".mp4")
         new_clip.close()
-
+    
+    
 
 
 win=tkinter.Tk(screenName='AV operations')
@@ -59,7 +59,9 @@ win.geometry("1020x720")
 #taking input of file names
 
 tkinter.Label(win,text='Enter the address of the video ',padx=10).grid(row=0,column=0,sticky='w')#taking input of the video file 
-b = tkinter.Button(win,width = 15,text= "Browse",command = getpath).grid(row=0,column=2)
+filedes=tkinter.Entry(win)
+filedes.grid(row=0,column=1)
+b = tkinter.Button(win,width = 15,text= "Browse",command = getpath).grid(row=0,column=3)
 tkinter.Label(win,text='Enter the name of new file (Skip if you want to overwite the file) ',padx=10).grid(row=1,column=0,sticky='w')#taking input where to store new file if not overwriting
 filenewdes=tkinter.Entry(win)
 filenewdes.grid(row=1,column=1,sticky='e')
