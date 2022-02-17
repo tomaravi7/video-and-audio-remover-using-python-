@@ -83,4 +83,5 @@ b=tkinter.Button(win,text='Change Angle',bg="cyan",command=changeangle,padx=5,pa
 
 win.mainloop()
 
-#to add - change angle of video and add video and audio
+#to add - video and audio merger try making classes
+#diagnose and solve not responding issues
